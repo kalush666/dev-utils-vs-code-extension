@@ -1,26 +1,50 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+  console.log("Please enter the frameworks you would like to auto run");
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "dev-utils" is now active!');
+  const disposable = vscode.commands.registerCommand(
+    "dev-utils.generate",
+    async () => {
+      const frameworks = ["Angular", "NestJs", "React"];
+      const startUpOptions = ["Dev", "Prod"];
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('dev-utils.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from dev-utils!');
-	});
+      const selectedFrameworks = await vscode.window.showQuickPick(frameworks, {
+        canPickMany: true,
+      });
 
-	context.subscriptions.push(disposable);
+      if (!selectedFrameworks || selectedFrameworks.length === 0) {
+        vscode.window.showErrorMessage("No frameworks selected.");
+        return;
+      }
+
+      const selectedStartUpOptions = await vscode.window.showQuickPick(
+        startUpOptions,
+        {
+          canPickMany: true,
+        }
+      );
+
+      if (!selectedStartUpOptions || selectedStartUpOptions.length === 0) {
+        vscode.window.showErrorMessage("No startup options selected.");
+        return;
+      }
+
+      const folderNames = [];
+      selectedFrameworks.forEach(async (framework) => {
+        const folderName = await vscode.window.showInputBox({
+          prompt: `Enter folder name for ${framework} relative to root`,
+        });
+        folderNames.push(folderName);
+      });
+
+      vscode.window.showInformationMessage(
+        `Selected frameworks: ${selectedFrameworks.join(", ")}`
+      );
+    }
+  );
+
+  context.subscriptions.push(disposable);
 }
 
-// This method is called when your extension is deactivated
 export function deactivate() {}

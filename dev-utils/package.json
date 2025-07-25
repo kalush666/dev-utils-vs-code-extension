@@ -9,13 +9,15 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:dev-utils.generate"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "dev-utils.helloWorld",
-        "title": "Hello World"
+        "command": "dev-utils.generate",
+        "title": "Generate Dev Utils"
       }
     ]
   },
