@@ -24,7 +24,13 @@ Thumbs.db
 .env.*.local
 
 # Misc
+test/*
+test
 coverage/
 tmp/
 temp/
 dev-utils/dist/
+
+# Ignore test folder in the workspace root
+/test/
+
