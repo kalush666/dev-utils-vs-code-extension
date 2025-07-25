@@ -1,71 +1,56 @@
-# dev-utils README
+# dev-utils
 
-This is the README for your extension "dev-utils". After writing up a brief description, we recommend including the following sections.
+A Visual Studio Code extension to quickly generate a batch file (`run.bat`) for running multiple frameworks with selected startup options in separate command windows.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- Select one or more frameworks (Angular, NestJs, React) to auto run.
+- Choose startup options (Dev, Prod) for each framework.
+- Enter a folder name for each selected framework (relative to the workspace root).
+- Generates a `run.bat` file in the workspace root that opens a new command window for each selected framework and option.
+- The batch file uses `start cmd /k` to run each command independently.
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Open the Command Palette (`Ctrl+Shift+P`).
+2. Run the command: `Generate Dev Utils`.
+3. Select the frameworks you want to run.
+4. Select the startup options (Dev or Prod).
+5. Enter the folder name for each framework.
+6. The extension will generate a `run.bat` file in your workspace root.
+7. Double-click `run.bat` to run all selected scripts in separate windows.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Example
+
+If you select Angular and React, choose both Dev and Prod, and enter `frontend/angular` and `frontend/react` as folder names, the generated `run.bat` will look like:
+
+```
+start cmd /k "cd frontend/angular && npm run start:dev"
+start cmd /k "cd frontend/angular && npm run start:prod"
+start cmd /k "cd frontend/react && npm run start:dev"
+start cmd /k "cd frontend/react && npm run start:prod"
+```
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- Node.js and npm installed for running scripts.
+- The selected folders must exist and contain the appropriate npm scripts.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+No custom settings are required.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+- The extension does not validate if the entered folder exists or if the npm scripts are defined.
+- Only works in Windows environments (uses batch file and `cmd`).
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+### 0.0.1
 
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+- Initial release with batch file generation for selected frameworks and options.
 
 ---
 
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**Enjoy using dev-utils!**
