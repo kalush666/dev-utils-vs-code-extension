@@ -24,8 +24,8 @@ Thumbs.db
 .env.*.local
 
 # Misc
-test/*
-test
+#/test/ will ignore the test folder in the workspace root
+/test/
 coverage/
 tmp/
 temp/
