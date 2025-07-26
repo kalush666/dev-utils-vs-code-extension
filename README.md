@@ -12,6 +12,8 @@ A Visual Studio Code extension to quickly generate a batch file (`run.bat`) for 
 
 ## Usage
 
+### In VS Code (Extension)
+
 1. Open the Command Palette (`Ctrl+Shift+P`).
 2. Run the command: `Generate Dev Utils`.
 3. Select the frameworks you want to run.
@@ -19,6 +21,16 @@ A Visual Studio Code extension to quickly generate a batch file (`run.bat`) for 
 5. Enter the folder name for each framework.
 6. The extension will generate a `run.bat` file in your workspace root.
 7. Double-click `run.bat` to run all selected scripts in separate windows.
+
+### From the Terminal (CLI)
+
+1. Open a terminal and navigate to the `dev-utils` folder.
+2. Run the CLI script:
+   - If using TypeScript directly: `npx ts-node src/generate-batch.ts`
+   - If compiled to JavaScript: `node dist/generate-batch.js`
+3. Follow the prompts to select frameworks, options, and folder names.
+4. The script will generate a `run.bat` file in your current directory.
+5. Double-click `run.bat` to run all selected scripts in separate windows.
 
 ## Example
 

@@ -25,6 +25,8 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "generate-batch": "ts-node src/generate-batch.ts",
+    "g b": "ts-node src/generate-batch.ts",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
